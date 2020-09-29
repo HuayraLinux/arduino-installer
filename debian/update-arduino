@@ -1,0 +1,50 @@
+#!/bin/bash
+
+failed=0
+local_version=0
+check_sha512=1
+
+work_dir=`mktemp -d -t update-arduino.XXXXXX`
+
+arch=`dpkg --print-architecture`
+
+if [ "$arch" = "amd64" ]; then
+	#parametro para la descarga
+	arduino_os="linux64"
+	#parametro para el url del sha512
+	arduino_arch="x86_64"
+elif [ "$arch" = "i386" ]; then
+	arduino_os="linux32"
+	arduino_arch="i686"
+else
+	echo "Arquitectura no soportada por este script :("
+	failed=1
+fi
+
+if [ $failed = 0 ]; then
+	latest_tag=$(basename $(curl -Ls -o /dev/null -w %{url_effective} https://github.com/arduino/Arduino/releases/latest))
+
+	arduino_link="https://downloads.arduino.cc/arduino-$latest_tag-$arduino_os.tar.xz"
+
+	arduino_file=`basename $arduino_link`
+
+	echo "Descargando $arduino_link... Aguarde un momento..."
+	curl -o "$work_dir/$arduino_file" "$arduino_link"
+
+	if [ $? = 0 ]; then
+		echo "Eliminado versión anterior"
+		rm -rf /opt/arduino
+		echo "Descomprimiendo $moz_file...Aguarde un momento mas..."
+		tar -xf "$work_dir/$arduino_file" -C "$work_dir"
+		mv "$work_dir/arduino-$latest_tag" /opt/arduino
+		echo "Arduino ha sido actualizado."
+		echo "Se recomienda cerrar la aplicación y volverla a ejecutar"
+	else
+		echo "No se puede descargar el archivo $arduino_file."
+		failed=1
+	fi
+else
+	echo "Error al descargar encabezados"
+	failed=1
+fi 
+exit 0

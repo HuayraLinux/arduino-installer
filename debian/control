@@ -1,0 +1,18 @@
+Source: arduino-installer
+Section: utils
+Priority: extra
+Maintainer: Matias De lellis <mati86dl@gmail.com>
+Build-Depends: debhelper (>= 8.0.0), devscripts
+Standards-Version: 3.9.6
+Homepage: https://github.com/HuayraLinux/arduino-installer
+Vcs-Git: https://github.com/HuayraLinux/arduino-installer.git
+Vcs-Browser: https://github.com/HuayraLinux/arduino-installer
+
+Package: arduino-installer
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ coreutils (>= 8.23), curl (>= 7.38), sed (>= 4.2), dos2unix (>= 6.0),
+ dpkg (>= 1.0), bzip2 (>= 1.0.6), ca-certificates
+Provides: arduino
+Description: Pequeño script para instalar la última versión de Arduino
+ Este script instala la versión más reciente de Arduino

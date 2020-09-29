@@ -1,0 +1,13 @@
+Template: arduino-installer/remove-install-files
+Type: boolean
+Default: false
+Description: Desea eliminar los archivos de instalación que fueron descargados?
+ Confirme si desea eliminar los archivos de instalación de Arduino
+ al remover este paquete:
+ .
+ Cuando desinstale este paquete (arduino-installer) puede elegir si desea eliminar los archivos
+ de instalacion del mismo que fueron descargados al momento de instalación.
+ .
+ Esto SOLO va a eliminar los archivos de instalación que se encuentran
+ en /opt/arduino y NO se eliminan sus archivos personales de los perfiles
+ generados en el HOME del usuario (~/.arduino15).

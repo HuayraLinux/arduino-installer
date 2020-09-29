@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" = "remove" ]; then
+    # Debconf
+    . /usr/share/debconf/confmodule
+
+    db_version 2.0
+
+    db_get arduino-installer/remove-install-files
+
+    if [ "$RET" = "true" ]; then
+      echo "Eliminando archivos de /opt/arduino"
+      rm -rf /opt/arduino
+    fi
+
+fi
+
+exit 0
+
+#DEBHELPER#

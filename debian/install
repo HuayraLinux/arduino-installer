@@ -1,0 +1,3 @@
+debian/update-arduino 	usr/sbin/
+debian/arduino.desktop 	usr/share/applications/
+debian/icons/* usr/share/icons/hicolor
