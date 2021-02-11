@@ -1,3 +1,9 @@
+arduino-installer (1.1) torbellino; urgency=medium
+
+  * Agrega dependencia a xz-utils
+
+ -- Matias De lellis <mati86dl@gmail.com>  Thu, 11 Feb 2021 11:14:28 -0300
+
 arduino-installer (1.0) unstable; urgency=medium
 
   * Version inicial
